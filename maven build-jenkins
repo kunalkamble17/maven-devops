@@ -1,0 +1,23 @@
+pipeline {
+    agent any
+    stages {
+        stage('Pull') {
+            steps {
+                // Pull your code here
+                git 'https://github.com/rajatpzade/studentapp.ui.git'
+            }
+        }
+        stage('Build') {
+            steps {
+                // Build the code
+                sh '/opt/maven/bin/mvn clean package'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                // Deploy the application (add your deployment steps here)
+                echo 'Deploying the application...'
+            }
+        }
+    }
+}
