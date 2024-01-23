@@ -1,0 +1,34 @@
+pipeline {
+    agent any
+    stages {
+        stage('Pull') {
+            steps {
+                // Pull your code here
+                git 'https://github.com/rajatpzade/studentapp.ui.git'
+            }
+        }
+        stage('Build') {
+            steps {
+                // Build the code
+                sh '/opt/maven/bin/mvn clean package'
+            }
+        }
+        stage('Test') {
+            steps {
+                // Test the application (add your testing steps here)
+                withSonarQubeEnv(credentialsId: 'sonar-cred') {
+                    sh 'mvn sonar:sonar'
+                }
+                 
+                 //-Dsonar.projectKey=studentapp \\
+                 //-Dsonar.host.url=http://43.206.252.157:9000 \\
+                 //-Dsonar.login=9c92433c1d16819708fe8066731d03f5180758fc'''//
+            }
+        stage('Deploy') {
+            steps {
+                // Deploy the application (add your deployment steps here)
+                echo 'Deploying the application...'
+            }
+        }
+    }
+}
