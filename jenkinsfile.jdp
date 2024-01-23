@@ -24,6 +24,7 @@ pipeline {
                  //-Dsonar.host.url=http://43.206.252.157:9000 \\
                  //-Dsonar.login=9c92433c1d16819708fe8066731d03f5180758fc'''//
             }
+        }
         stage('Deploy') {
             steps {
                 // Deploy the application (add your deployment steps here)
