@@ -21,6 +21,13 @@ pipeline {
                 }
             }
         }
+        stage('QualityGate') {
+            steps {
+                timeout(5) {
+                waitForQualityGate abortPipeline: true
+                }
+            }
+        }
 
         stage('Deploy') {
             steps {
