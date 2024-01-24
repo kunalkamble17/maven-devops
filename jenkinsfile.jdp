@@ -10,14 +10,14 @@ pipeline {
         stage('Build') {
             steps {
                 // Build the code
-                sh 'mvn clean package'
+                sh '/opt/maven/bin/mvn clean package'
             }
         }
         stage('Test') {
             steps {
                 // Test the application (add your testing steps here)
                 withSonarQubeEnv(installationName: 'sonar', credentialsId: 'sonar-cred') {
-                    sh 'mvn sonar:sonar'
+                    sh '/opt/maven/bin/mvn sonar:sonar'
                 }
                  
                  //-Dsonar.projectKey=studentapp \\
